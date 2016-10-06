@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2016-10-05 19:51
+# Last Modified: 2016-10-06 14:37
 
 # Basic settings
 # {{{
@@ -19,6 +19,8 @@ done
 limit coredumpsize 0
 # 允许在命令后添加注释
 setopt INTERACTIVE_COMMENTS      
+# Fix no matches
+setopt no_nomatch
 
 if [ -z "$ZSH_THEME"]; then
     source $ZSH/themes/anton.zsh-theme
