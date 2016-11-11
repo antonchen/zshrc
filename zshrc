@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2016-10-05 19:50
+# Last Modified: 2016-11-09 14:31
 
 # Brew mirrors
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"

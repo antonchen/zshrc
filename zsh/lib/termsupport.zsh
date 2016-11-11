@@ -3,7 +3,7 @@
 # Description: 
 # Version: 0.1
 # Create Date: 2016-08-08 14:41
-# Last Modified: 2016-09-24 10:51
+# Last Modified: 2016-10-07 14:22
 # Author: Anton Chen
 # Email: contact@antonchen.com
 function title {
@@ -17,7 +17,7 @@ function title {
             print -Pn "\e]1;$1:q\a" # set tab name
             ;;
         screen*)
-            print -Pn "\ek$1:q\e\\" # set screen hardstatus
+            print -Pn "\ek%n@%m: %~\e\\" # set screen hardstatus
             ;;
         *)
             if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then

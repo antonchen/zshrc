@@ -2,10 +2,15 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2016-10-06 14:37
+# Last Modified: 2016-11-11 16:56
 
 # Basic settings
 # {{{
+
+# Load PATH
+if [[ -f /etc/profile ]]; then
+    source /etc/profile
+fi
 
 autoload -U compinit
 compinit
