@@ -2,10 +2,10 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2016-11-09 14:31
+# Last Modified: 2016-11-27 16:56
 
 # Brew mirrors
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -14,7 +14,7 @@ export ZSH="$HOME/.zsh"
 export EDITOR="vim"
 
 # Plugins
-export PLUGINS='sudo anton'
+export PLUGINS='sudo warp anton'
 
 # History format, Support: mm/dd/yyyy,dd.mm.yyyy,yyyy-mm-dd
 export HIST_STAMPS="yyyy-mm-dd"
