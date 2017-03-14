@@ -3,7 +3,7 @@
 # Description: 
 # Version: 0.1
 # Create Date: 2016-07-31 14:25
-# Last Modified: 2016-08-14 22:09
+# Last Modified: 2017-03-14 11:04
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -12,9 +12,9 @@ if [ -z "$HISTFILE" ]; then
     export HISTFILE="$HOME/.zsh_history"
 fi
 
-#if [ ! -f $HISTFILE ]; then
-#    touch $HISTFILE
-#fi
+if [ ! -f $HISTFILE ]; then
+    touch $HISTFILE
+fi
 
 # 历史纪录数量
 export HISTSIZE=10000
@@ -22,6 +22,8 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 # 以附加的方式写入历史纪录
 setopt INC_APPEND_HISTORY
+# 多终端共享历史纪录（增加IO负担）
+setopt SHARE_HISTORY
 # 如果连续输入的命令相同，历史纪录中只保留一个
 setopt HIST_IGNORE_DUPS      
 # 优先清空相通历史记录
@@ -35,7 +37,7 @@ setopt PUSHD_IGNORE_DUPS
 # 在命令前添加空格，不将此命令添加到纪录文件中
 setopt HIST_IGNORE_SPACE
 # 调用历史记录时不直接执行，而是加载可编辑
-setopt HIST_VERIFY
+# setopt HIST_VERIFY
 
 # 查看历史记录
 case $HIST_STAMPS in

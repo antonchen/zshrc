@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2016-12-17 15:28
+# Last Modified: 2017-03-14 10:26
 
 # Basic settings
 # {{{
@@ -34,26 +34,6 @@ if [ -z "$ZSH_THEME"]; then
 else
     source $ZSH/themes/$ZSH_THEME.zsh-theme
 fi
-# }}}
-
-# Alias
-# {{{
-
-# 命令别名
-alias -g cp='cp -i'
-alias -g mv='mv -i'
-alias -g rm='rm -i'
-alias -g grep='grep --color=auto'
-alias -g l='ls -lah'
-alias -g ll='ls -lh'
-alias -g la='l'
-alias -g lh='l'
-alias -g bash='time bash'
-
-# 路径别名
-# 进入相应的路径时只要 cd ~xxx
-# hash -d W="/data/working"
-
 # }}}
 
 # 自定义补全
