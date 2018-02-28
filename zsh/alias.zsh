@@ -3,21 +3,23 @@
 # Description: 
 # Version: 0.1
 # Create Date: 2016-09-23 13:49
-# Last Modified: 2017-03-14 10:26
+# Last Modified: 2018-02-28 14:40:56
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
 # {{{
 
-# 命令别名
-alias -g cp='cp -i'
-alias -g mv='mv -i'
-alias -g rm='rm -i'
+# 全局别名
 alias -g grep='grep --color=auto'
-alias -g l='ls -lah'
-alias -g ll='ls -lh'
-alias -g la='l'
-alias -g lh='l'
+
+# 命令别名
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='l'
+alias lh='l'
 
 alias unzip_gbk="unzip -O CP936"
 alias rscp='rsync -P --rsh=ssh'

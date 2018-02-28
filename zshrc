@@ -2,10 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2017-03-14 10:25
-
-# Brew mirrors
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+# Last Modified: 2018-02-28 14:43:59
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -59,3 +56,11 @@ else
 fi
 
 # }}}
+
+if which pyenv > /dev/null 2>&1; then 
+    eval "$(pyenv init -)"
+fi
+
+if which rbenv > /dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
