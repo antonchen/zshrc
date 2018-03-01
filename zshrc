@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-02-28 14:43:59
+# Last Modified: 2018-03-01 15:56:27
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -57,10 +57,10 @@ fi
 
 # }}}
 
-if which pyenv > /dev/null 2>&1; then 
+if command -v pyenv > /dev/null 2>&1; then 
     eval "$(pyenv init -)"
 fi
 
-if which rbenv > /dev/null 2>&1; then
+if command -v rbenv > /dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi

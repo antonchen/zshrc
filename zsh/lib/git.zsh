@@ -3,12 +3,12 @@
 # Description: 
 # Version: 0.1
 # Create Date: 2016-08-13 16:47
-# Last Modified: 2016-08-14 21:50
+# Last Modified: 2018-03-01 15:57:19
 # Author: Anton Chen
 # Email: contact@antonchen.com
 _check_git ()
 {
-    which git >/dev/null 2>&1 || return 1
+    command -v git >/dev/null 2>&1 || return 1
     git rev-parse --git-dir >/dev/null 2>&1 && return 0 || return 1
 }
 
