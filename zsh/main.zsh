@@ -2,14 +2,14 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2017-03-14 10:26
+# Last Modified: 2018-03-01 11:41:05
 
 # Basic settings
 # {{{
 
 # Load PATH
 if [[ -f /etc/profile ]]; then
-    source /etc/profile
+    emulate sh -c 'source /etc/profile'
 fi
 
 autoload -U compinit
