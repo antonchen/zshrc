@@ -4,7 +4,7 @@ My zsh config.
 ## 安装
 
 ```
-curl -s https://raw.githubusercontent.com/antonchen/zshrc/master/install.sh | bash
+curl -s -k https://raw.githubusercontent.com/antonchen/zshrc/master/install.sh | bash
 ```
 
 ## 异常
