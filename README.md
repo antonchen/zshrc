@@ -1,13 +1,10 @@
 # Zshrc
 My zsh config.
 
-## 使用
+## 安装
 
 ```
-wget -c https://github.com/antonchen/zshrc/archive/master.zip
-unzip master.zip && cd zshrc-master
-cp -r zsh ~/.zsh
-cp zshrc ~/.zshrc
+curl -s https://raw.githubusercontent.com/antonchen/zshrc/master/install.sh | bash
 ```
 
 ## 异常
