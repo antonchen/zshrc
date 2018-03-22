@@ -9,13 +9,11 @@
 
 # {{{
 
-# 全局别名
-alias -g grep='grep --color=auto'
-
 # 命令别名
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+alias grep='grep --color=auto'
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='l'
