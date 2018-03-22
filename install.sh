@@ -38,4 +38,4 @@ fi
 cp -r zshrc/zsh $HOME/.zsh
 cp zshrc/zshrc $HOME/.zshrc
 rm -rf zshrc
-echo "[+] Install simple zsh successfully." >&2
+echo "[+] Install zshrc successfully." >&2
