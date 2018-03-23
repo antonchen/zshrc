@@ -1,9 +1,7 @@
 #!/bin/zsh
 # File: key-bindings.zsh
-# Description: 
 # Version: 0.1
-# Create Date: 2016-08-07 17:28
-# Last Modified: 2016-08-07 19:17
+# Last Modified: 2018-03-23 23:14:23
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -12,10 +10,12 @@
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  function zle-line-init() {
+  zle-line-init()
+  {
     echoti smkx
   }
-  function zle-line-finish() {
+  zle-line-finish()
+  {
     echoti rmkx
   }
   zle -N zle-line-init

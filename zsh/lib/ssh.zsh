@@ -1,13 +1,11 @@
 #!/bin/zsh
 # File: ssh.zsh
-# Description: 
 # Version: 0.1
-# Create Date: 2016-08-18 18:07
-# Last Modified: 2016-08-19 15:09
+# Last Modified: 2018-03-23 23:26:02
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
-newSSH ()
+newSSH()
 {
     cat $HOME/.ssh/ssh-config/* >$HOME/.ssh/config
 }

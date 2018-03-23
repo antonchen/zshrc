@@ -1,12 +1,11 @@
 #!/bin/zsh
 # File: termsupport.zsh
-# Description: 
 # Version: 0.1
-# Create Date: 2016-08-08 14:41
-# Last Modified: 2016-10-07 14:22
+# Last Modified: 2018-03-23 23:24:57
 # Author: Anton Chen
 # Email: contact@antonchen.com
-function title {
+__title()
+{
     emulate -L zsh
     setopt prompt_subst
     [[ "$EMACS" == *term* ]] && return
@@ -41,15 +40,17 @@ if [[ "$TERM_PROGRAM" == Apple_Terminal ]]; then
     ZSH_THEME_TERM_TITLE_IDLE="%n@%m"
 fi
 
-function omz_termsupport_precmd {
+omz_termsupport_precmd()
+{
     emulate -L zsh
     if [[ "$DISABLE_AUTO_TITLE" == true ]]; then
         return
     fi
-    title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
+    __title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
 }
 
-function omz_termsupport_preexec {
+omz_termsupport_preexec()
+{
     emulate -L zsh
     setopt extended_glob
     if [[ "$DISABLE_AUTO_TITLE" == true ]]; then
@@ -57,14 +58,15 @@ function omz_termsupport_preexec {
     fi
     local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
     local LINE="${2:gs/%/%%}"
-    title '$CMD' '%100>...>$LINE%<<'
+    __title '$CMD' '%100>...>$LINE%<<'
 }
 
 precmd_functions+=(omz_termsupport_precmd)
 preexec_functions+=(omz_termsupport_preexec)
 
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
-    function update_terminalapp_cwd() {
+    update_terminalapp_cwd()
+    {
         emulate -L zsh
 
         local URL_PATH="$(omz_urlencode -P $PWD 2>/dev/null)"

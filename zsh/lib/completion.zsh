@@ -1,12 +1,10 @@
 #!/bin/zsh
 # File: completion.zsh
-# Description: 
 # Version: 0.1
-# Create Date: 2016-07-31 14:24
-# Last Modified: 2017-03-30 11:15
+# Last Modified: 2018-03-23 22:58:49
 # Author: Anton Chen
 # Email: contact@antonchen.com
-    
+
 # 自动补全缓存
 # zstyle ':completion::complete:*' use-cache on
 # zstyle ':completion::complete:*' cache-path .zcache
@@ -23,13 +21,11 @@ setopt complete_in_word
 
 # 补全时会直接选中菜单项
 # setopt MENU_COMPLETE
-if [ -f ~/.ssh/config ]; then
-    sshHost=`grep 'Host ' ~/.ssh/config|egrep -v '\*'|awk 'BEGIN{ORS=" "}{print $2}'`
+if [[ -f ~/.ssh/config ]]; then
+    sshHost=$(grep 'Host ' ~/.ssh/config|egrep -v '\*'|awk 'BEGIN{ORS=" "}{print $2}')
 fi
-hosts=(
-    `egrep -v '^#|^$|localhost' /etc/hosts|sed 's/ #.*$//g'`
-    `echo $sshHost`
-)
+hosts=($(egrep -v '^#|^$|localhost' /etc/hosts|sed 's/ #.*$//g')
+$(echo $sshHost))
 zstyle ':completion:*' hosts $hosts
 
 # 修正大小写

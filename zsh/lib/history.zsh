@@ -1,18 +1,16 @@
 # !/bin/zsh
 # File: history.zsh
-# Description: 
 # Version: 0.1
-# Create Date: 2016-07-31 14:25
-# Last Modified: 2017-03-14 11:04
+# Last Modified: 2018-03-23 23:25:46
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
 # 历史纪录文件
-if [ -z "$HISTFILE" ]; then
+if [[ -z "$HISTFILE" ]]; then
     export HISTFILE="$HOME/.zsh_history"
 fi
 
-if [ ! -f $HISTFILE ]; then
+if [[ ! -f $HISTFILE ]]; then
     touch $HISTFILE
 fi
 
@@ -41,13 +39,13 @@ setopt HIST_IGNORE_SPACE
 
 # 查看历史记录
 case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-  "dd.mm.yyyy") alias history='fc -El 1' ;;
-  "yyyy-mm-dd") alias history='fc -il 1' ;;
-  *) alias history='fc -l 1' ;;
+    "mm/dd/yyyy") alias history='fc -fl 1' ;;
+    "dd.mm.yyyy") alias history='fc -El 1' ;;
+    "yyyy-mm-dd") alias history='fc -il 1' ;;
+    *) alias history='fc -l 1' ;;
 esac
 
-hs ()
+hs()
 {
     history | grep $*
 }

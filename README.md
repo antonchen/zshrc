@@ -9,7 +9,7 @@ curl -s -k https://raw.githubusercontent.com/antonchen/zshrc/master/install.sh |
 
 ## 异常
 
-每次启动 zsh 时提示：
+启动 zsh 时提示：
 
 ```
 zsh compinit: insecure files, run compaudit for list.
@@ -25,4 +25,4 @@ Ignore insecure files and continue [y] or abort compinit [n]?
 2. 运行 `compaudit | xargs chmod go-w`
 3. 如未修复请尝试方法 2
 #### 方法 2
-1. 修改 [zsh/main.zsh#L16](https://github.com/antonchen/zshrc/blob/master/zsh/main.zsh#L16) `compinit` 为 `compinit -u` 让 zsh 不检查
+1. 修改 [zsh/main.zsh#L18&L20](https://github.com/antonchen/zshrc/blob/master/zsh/main.zsh#L18) `compinit -i` 后添加 `-u` 让 zsh 不检查

@@ -1,9 +1,7 @@
 #!/bin/zsh
 # File: anton.zsh-theme
-# Description: 
 # Version: 0.1
-# Create Date: 2016-08-08 15:26
-# Last Modified: 2017-07-14 14:50:04
+# Last Modified: 2018-03-23 23:26:45
 # Author: Anton Chen
 # Email: contact@antonchen.com
 # 删除样式
@@ -20,7 +18,7 @@ done
 setopt prompt_subst
 
 # User if root
-if [ $UID -eq 0 ]; then
+if [[ $UID -eq 0 ]]; then
     NCOLOR="$_RED"
 else
     NCOLOR="$_BLUE"
@@ -37,14 +35,14 @@ zstyle ':vcs_info:*' unstagedstr '●'
 zstyle ':vcs_info:*' formats ' %u%c'
 zstyle ':vcs_info:*' actionformats ' %u%c'
 
-prompt_git ()
+prompt_git()
 {
     _check_git
-    if [ $? -ne 0 ]; then
+    if [[ $? -ne 0 ]]; then
         return
     fi
 
-	vcs_info
+    vcs_info
     if [[ "Z${vcs_info_msg_0_}" == "Z " ]]; then
         echo -n "%{$fg_bold[green]%}$(_git_repo_name) [ $(_git_branch_name) ]$FINISH"
     else
@@ -58,8 +56,10 @@ $NCOLOR%n$FINISH %(?.$GREEN.$RED)% ➜  $FINISH'
 
 # 利用 zsh 内置调用函数异步加载RPROMPT
 ASYNC_PROC=0
-function precmd() {
-    function async() {
+precmd()
+{
+    __async()
+    {
         # 保存 RPROMPT 到临时文件
         printf "%s" "$(prompt_git)" > "${HOME}/.zsh_tmp_prompt"
         # signal parent
@@ -72,11 +72,12 @@ function precmd() {
     fi
 
     # 后台运行
-    async &!
+    __async &!
     ASYNC_PROC=$!
 }
 
-function TRAPUSR1() {
+TRAPUSR1()
+{
     # 读取 RPROMPT
     RPROMPT="$(cat ${HOME}/.zsh_tmp_prompt)"
     # 重置 ASYNC_PROC
