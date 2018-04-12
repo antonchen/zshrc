@@ -1,35 +1,51 @@
 # File: python.zsh
 # Author: Anton Chen
-# Version: 0.1
+# Version: 0.2
 # Email: contact@antonchen.com
-# Last Modified: 2018-03-23 22:28:04
+# Last Modified: 2018-04-12 12:57:08
+
+__pyenv_is_exists=0
+if command -v pyenv > /dev/null 2>&1; then
+    __pyenv_is_exists=1
+fi
 
 __pyenv_started=0
-
 __pyenv_init()
 {
     test $__pyenv_started = 0 && {
-        if command -v pyenv > /dev/null 2>&1; then
+        if [[ $__pyenv_is_exists -eq 1 ]]; then
+            echo $PATH|grep -q '.pyenv/shims' && export PATH="${PATH%%$HOME/.pyenv/shims:*}${PATH##*$HOME/.pyenv/shims:}"
             eval "$(command pyenv init -)"
         fi
         __pyenv_started=1
     }
 }
 
-pyenv()
-{
-    __pyenv_init
-    command pyenv "$@"
-}
+test $__pyenv_started = 0 && {
+    if [[ $__pyenv_is_exists -eq 1 ]] && [[ -d $HOME/.pyenv/shims ]]; then
+        export PATH="$HOME/.pyenv/shims:$PATH"
+        pyenv()
+        {
+            __pyenv_init
+            command pyenv "$@"
+        }
+    elif [[ $__pyenv_is_exists -eq 1 ]] && [[ ! -d $HOME/.pyenv/shims ]]; then
+        pyenv()
+        {
+            __pyenv_init
+            command pyenv "$@"
+        }
 
-python()
-{
-    __pyenv_init
-    command python "$@"
-}
+        python()
+        {
+            __pyenv_init
+            command python "$@"
+        }
 
-pip()
-{
-    __pyenv_init
-    command pip "$@"
+        pip()
+        {
+            __pyenv_init
+            command pip "$@"
+        }
+    fi
 }
