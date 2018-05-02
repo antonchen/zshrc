@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-03-23 23:59:43
+# Last Modified: 2018-05-02 15:30:25
 
 # Basic settings
 # {{{
@@ -27,9 +27,11 @@ for config in $(ls $ZSH/lib/*.zsh); do
 done
 
 # 允许在命令后添加注释
-setopt INTERACTIVE_COMMENTS      
-# Fix no matches
+setopt interactive_comments      
+# 禁用 no matches 提示
 setopt no_nomatch
+# 注销时不结束后台进程
+setopt nohup
 # 禁用粘贴高亮
 zle_highlight+=(paste:none)
 
