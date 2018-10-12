@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: alias.zsh
 # Version: 0.1
-# Last Modified: 2018-03-23 23:32:52
+# Last Modified: 2018-10-12 14:30:54
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -22,6 +22,10 @@ alias rscp='rsync -P --rsh=ssh'
 alias aria2c='aria2c -c -s 5'
 alias fuck='proxychains4'
 alias g='git'
+
+if command -v npm > /dev/null 2>&1; then
+    alias cnpm="npm --registry=https://registry.npm.taobao.org --cache=$HOME/.npm/.cache/cnpm --disturl=https://npm.taobao.org/dist --userconfig=$HOME/.cnpmrc"
+fi
 
 # 路径别名
 # 进入相应的路径时只要 cd ~xxx
