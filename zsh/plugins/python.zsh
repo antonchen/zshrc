@@ -1,8 +1,9 @@
+#!/bin/zsh
 # File: python.zsh
 # Author: Anton Chen
 # Version: 0.2
 # Email: contact@antonchen.com
-# Last Modified: 2018-04-12 12:57:08
+# Last Modified: 2018-10-18 13:38:28
 
 __pyenv_is_exists=0
 if command -v pyenv > /dev/null 2>&1; then

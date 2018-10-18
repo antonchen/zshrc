@@ -1,8 +1,9 @@
+#!/bin/zsh
 # File: sudo.zsh
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-03-23 23:19:00
+# Last Modified: 2018-10-18 13:38:40
 
 # 在命令前插入 sudo
 sudo-command-line()

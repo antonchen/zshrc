@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-03-24 00:03:58
+# Last Modified: 2018-10-18 13:46:16
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -24,6 +24,17 @@ export DISABLE_COMMAND_COLORS="false"
 
 # Auto title
 export DISABLE_AUTO_TITLE="false"
+
+# PATH
+# {{{
+
+if command -v go > /dev/null 2>&1; then
+    export GOPATH="$HOME/.go"
+    test -d $GOPATH || mkdir -p $GOPATH
+    export PATH="$GOPATH/bin:$PATH"
+fi
+
+# }}}
 
 # Loading
 # {{{

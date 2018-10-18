@@ -1,8 +1,9 @@
+#!/bin/zsh
 # File: ruby.zsh
 # Author: Anton Chen
 # Version: 0.2
 # Email: contact@antonchen.com
-# Last Modified: 2018-04-12 12:56:06
+# Last Modified: 2018-10-18 13:38:35
 
 __rbenv_is_exists=0
 if command -v rbenv > /dev/null 2>&1; then
