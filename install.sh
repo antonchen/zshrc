@@ -1,24 +1,25 @@
 #!/bin/bash
 # Create Date: 2017-05-17 11:24:39
-# Last Modified: 2018-03-05 13:53:42
-HERE=$(cd -P -- $(dirname -- "$0") && pwd -P)
-DownloadURL='https://github.com/antonchen/zshrc/archive/master.zip'
+# Last Modified: 2018-10-18 18:13:14
+DownloadURL='https://github.com/antonchen/zshrc/archive/master.tar.gz'
 
+cd /tmp
 if command -v wget > /dev/null 2>&1; then
-    wget --no-check-certificate -O zshrc.zip -c $DownloadURL
+    wget --no-check-certificate -O zshrc.tar.gz -c $DownloadURL
 elif command -v curl > /dev/null 2>&1; then
-    curl -k -L -e  '; auto' -o zshrc.zip $DownloadURL
+    curl -k -L -e  '; auto' -o zshrc.tar.gz $DownloadURL
 else
     echo "[-] Download file failed, please install wget or curl command." >&2
 fi
 
-if [ -f zshrc.zip ]; then
+if [ -f zshrc.tar.gz ]; then
     test -d zshrc-master && rm -rf zshrc-master
-    if unzip zshrc.zip; then
+    echo "[+] Extracting files..." >&2
+    if tar xf zshrc.tar.gz; then
         mv zshrc-master zshrc
-        rm -f zshrc.zip
+        rm -f zshrc.tar.gz
     else
-        echo "[-] Unzip file failed, please install unzip command." >&2
+        echo "[-] Extract file failed." >&2
         exit 2
     fi
 else
