@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-10-18 13:46:16
+# Last Modified: 2018-11-12 11:08:57
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -29,7 +29,7 @@ export DISABLE_AUTO_TITLE="false"
 # {{{
 
 if command -v go > /dev/null 2>&1; then
-    export GOPATH="$HOME/.go"
+    export GOPATH="$HOME/Golang"
     test -d $GOPATH || mkdir -p $GOPATH
     export PATH="$GOPATH/bin:$PATH"
 fi
