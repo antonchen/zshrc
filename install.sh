@@ -15,7 +15,7 @@ fi
 if [ -f zshrc.tar.gz ]; then
     test -d zshrc-master && rm -rf zshrc-master
     echo "[+] Extracting files..." >&2
-    if tar xf zshrc.tar.gz; then
+    if gzip -dc zshrc.tar.gz | tar -xf -; then
         mv zshrc-master zshrc
         rm -f zshrc.tar.gz
     else
