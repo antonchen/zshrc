@@ -2,7 +2,7 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2018-11-12 11:08:57
+# Last Modified: 2023-01-04 16:46:38
 
 # ZSH Home
 export ZSH="$HOME/.zsh"
@@ -11,7 +11,7 @@ export ZSH="$HOME/.zsh"
 export EDITOR="vim"
 
 # Plugins
-export PLUGINS='sudo warp'
+export PLUGINS='sudo'
 
 # History format, Support: mm/dd/yyyy,dd.mm.yyyy,yyyy-mm-dd
 export HIST_STAMPS="yyyy-mm-dd"
@@ -27,13 +27,13 @@ export DISABLE_AUTO_TITLE="false"
 
 # PATH
 # {{{
+export PATH="$HOME/.bin:$PATH"
 
 if command -v go > /dev/null 2>&1; then
     export GOPATH="$HOME/Golang"
     test -d $GOPATH || mkdir -p $GOPATH
     export PATH="$GOPATH/bin:$PATH"
 fi
-
 # }}}
 
 # Loading
