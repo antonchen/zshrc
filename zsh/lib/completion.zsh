@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: completion.zsh
 # Version: 0.1
-# Last Modified: 2018-03-23 22:58:49
+# Last Modified: 2023-01-04 17:32:21
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -22,11 +22,17 @@ setopt complete_in_word
 # 补全时会直接选中菜单项
 # setopt MENU_COMPLETE
 if [[ -f ~/.ssh/config ]]; then
-    sshHost=$(grep 'Host ' ~/.ssh/config|egrep -v '\*'|awk 'BEGIN{ORS=" "}{print $2}')
+    _ssh_config_hosts=$(grep 'Host ' ~/.ssh/config|egrep -v '\*'|awk 'BEGIN{ORS=" "}{print $2}')
 fi
-hosts=($(egrep -v '^#|^$|localhost' /etc/hosts|sed 's/ #.*$//g')
-$(echo $sshHost))
-zstyle ':completion:*' hosts $hosts
+_hosts=($(egrep -v '^#|^$|localhost|broadcasthost' /etc/hosts|awk '{print $2}')
+$(echo $_ssh_config_hosts))
+if [[ -d ~/.ssh/session ]]; then
+    for _ssh_session in $(ls ~/.ssh/session); do
+        _hosts=($_hosts $(echo $_ssh_session|sed 's/\-[0-9]*\-[a-zA-Z]*$//g'))
+    done
+fi
+zstyle ':completion:*' hosts $_hosts
+zstyle ':completion:*' users $USER root
 
 # 修正大小写
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
