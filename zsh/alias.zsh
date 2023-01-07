@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: alias.zsh
 # Version: 0.1
-# Last Modified: 2019-01-08 12:27:12
+# Last Modified: 2023-01-07 23:35:10
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -20,8 +20,8 @@ alias lh='l'
 alias unzip_gbk="unzip -O CP936"
 alias rscp='rsync -P --rsh=ssh'
 alias aria2c='aria2c -c -s 5'
-alias fuck='proxychains4'
 alias g='git'
+alias reload='exec zsh'
 
 # 直接输入指定后缀文件名，使用指定命令打开
 alias -s js='vim'
