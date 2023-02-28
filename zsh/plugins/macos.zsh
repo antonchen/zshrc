@@ -15,7 +15,7 @@ fi
 
 vncviewer()
 {
-  open vnc://$@
+    open vnc://$@
 }
 
 # Show/hide hidden files in the Finder

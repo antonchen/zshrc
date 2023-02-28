@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: alias.zsh
 # Version: 0.1
-# Last Modified: 2023-01-07 23:35:10
+# Last Modified: 2023-01-07 23:32:44
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
