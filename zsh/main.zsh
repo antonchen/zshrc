@@ -7,23 +7,13 @@
 # Basic settings
 # {{{
 
-# Load PATH
-if [[ -f /etc/profile ]]; then
-    emulate sh -c 'source /etc/profile'
-fi
-
-autoload -Uz compinit
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-12))
-if [[ -n $_comp_files ]]; then
-    compinit -i -C
-else
-    compinit -i
-fi
-unset _comp_files
+# 补全初始化和规则
+source "$ZSH/completions/init.zsh"
+source "$ZSH/completions/commands.zsh"
 
 # Initializes
-for config in $(ls $ZSH/lib/*.zsh); do
-    source $config
+for config in "$ZSH"/lib/*.zsh; do
+    source "$config"
 done
 
 # 允许在命令后添加注释
@@ -42,35 +32,3 @@ else
 fi
 # }}}
 
-# 自定义补全
-# {{{
-
-# 补全 ping
-zstyle ':completion:*:ping:*' hosts 114.114.114.114 www.baidu.com
-
-# 空行(光标在行首)补全 "cd"
-insert-cd() {
-case $BUFFER in
-    "" )                       # 空行填入 "cd "
-        BUFFER="cd "
-        zle end-of-line
-        zle expand-or-complete
-        ;;
-    "cd --" )                  # "cd --" 替换为 "cd +"
-        BUFFER="cd +"
-        zle end-of-line
-        zle expand-or-complete
-        ;;
-    "cd +-" )                  # "cd +-" 替换为 "cd -"
-        BUFFER="cd -"
-        zle end-of-line
-        zle expand-or-complete
-        ;;
-    * )
-        zle expand-or-complete
-        ;;
-esac
-}
-zle -N insert-cd
-bindkey "\t" insert-cd
-# }}}

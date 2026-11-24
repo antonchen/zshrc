@@ -2,28 +2,27 @@
 # Author: Anton Chen
 # Version: 0.1
 # Email: contact@antonchen.com
-# Last Modified: 2023-02-28 14:20:43
+# Last Modified: 2026-11-22 15:48:59
+
+. "$HOME/.profile"
 
 # ZSH Home
-export ZSH="$HOME/.zsh"
-
-# Editor
-export EDITOR="vim"
+ZSH="$HOME/.zsh"
 
 # Plugins
-export PLUGINS='sudo'
+PLUGINS='sudo'
 
 # History format, Support: mm/dd/yyyy,dd.mm.yyyy,yyyy-mm-dd
-export HIST_STAMPS="yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Colors ls
-export DISABLE_LS_COLORS="false"
+DISABLE_LS_COLORS="false"
 
 # Colors command
-export DISABLE_COMMAND_COLORS="false"
+DISABLE_COMMAND_COLORS="false"
 
 # Auto title
-export DISABLE_AUTO_TITLE="false"
+DISABLE_AUTO_TITLE="false"
 
 # Loading
 # {{{
@@ -54,13 +53,6 @@ if [[ -f $ZSH/plugins.zsh ]]; then
 else
     echo -e "\nError: plugins.zsh does not exist. \n"
 fi
-
-# }}}
-
-# PATH
-# {{{
-
-export PATH="$HOME/.bin:$PATH"
 
 # }}}
 

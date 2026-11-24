@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: key-bindings.zsh
 # Version: 0.1
-# Last Modified: 2018-03-23 23:14:23
+# Last Modified: 2026-11-05 11:25:38
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -27,6 +27,33 @@ fi
 
 # Emacs风格 快捷键绑定
 bindkey -e
+
+# 空行(光标在行首)补全 "cd"
+insert-cd() {
+case $BUFFER in
+    "" )                       # 空行填入 "cd "
+        BUFFER="cd "
+        zle end-of-line
+        zle expand-or-complete
+        ;;
+    "cd --" )                  # "cd --" 替换为 "cd +"
+        BUFFER="cd +"
+        zle end-of-line
+        zle expand-or-complete
+        ;;
+    "cd +-" )                  # "cd +-" 替换为 "cd -"
+        BUFFER="cd -"
+        zle end-of-line
+        zle expand-or-complete
+        ;;
+    * )
+        zle expand-or-complete
+        ;;
+esac
+}
+zle -N insert-cd
+bindkey "\t" insert-cd
+
 # 设置 [DEL]键
 bindkey "\e[3~" delete-char
 # Esc + w 剪切整行命令
@@ -39,12 +66,15 @@ bindkey '^Y' yank
 autoload -Uz select-word-style
 select-word-style shell
 #select-word-style bash
-bindkey '\e\b' select-word-style
+bindkey '\e\b' backward-kill-word
 
 # 用 $EDITER 编辑当前命令
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
+
+# 禁用 Ctrl + s 终端流控
+stty -ixon
 
 # 历史记录
 # {{{

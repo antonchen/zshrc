@@ -26,7 +26,7 @@ _git_branch_name()
     local B_TEMP B T H
     B_TEMP=$(git symbolic-ref HEAD 2>/dev/null)
     B=${B_TEMP##refs/heads/}
-    T=$(git describe --exact-match --tags $(git log -n1 --pretty='%h') 2>/dev/null)
+    T=$(git describe --exact-match --tags HEAD 2>/dev/null)
     H=$(git rev-parse --short HEAD 2>/dev/null)
 
     if [[ -n $B ]]; then

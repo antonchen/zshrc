@@ -9,16 +9,23 @@ autoload -U colors && colors
 
 # ls colors
 # {{{
-if dircolors -b >/dev/null 2>&1; then
-    export LSCOLORS=$LS_COLORS
-else
-    export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+if command -v dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b)"
 fi
 
 if [[ "$DISABLE_LS_COLORS" != "true" ]]; then
     ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
 fi
 # }}}
+
+# 补全菜单颜色
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
 
 # command colors
 # {{{

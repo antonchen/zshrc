@@ -1,7 +1,7 @@
 #!/bin/bash
 # Create Date: 2017-05-17 11:24:39
-# Last Modified: 2018-10-18 18:13:14
-DownloadURL='https://github.com/antonchen/zshrc/archive/master.tar.gz'
+# Last Modified: 2026-11-24 09:53:33
+DownloadURL='https://github.com/antonchen/zshrc/archive/main.tar.gz'
 
 cd /tmp
 if command -v wget > /dev/null 2>&1; then
@@ -13,10 +13,10 @@ else
 fi
 
 if [ -f zshrc.tar.gz ]; then
-    test -d zshrc-master && rm -rf zshrc-master
+    test -d zshrc-main && rm -rf zshrc-main
     echo "[+] Extracting files..." >&2
     if gzip -dc zshrc.tar.gz | tar -xf -; then
-        mv zshrc-master zshrc
+        mv zshrc-main zshrc
         rm -f zshrc.tar.gz
     else
         echo "[-] Extract file failed." >&2

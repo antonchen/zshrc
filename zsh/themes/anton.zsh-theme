@@ -43,10 +43,16 @@ prompt_git()
     fi
 
     vcs_info
-    if [[ "Z${vcs_info_msg_0_}" == "Z " ]]; then
-        echo -n "%{$fg_bold[green]%}$(_git_repo_name) [ $(_git_branch_name) ]$FINISH"
+    local git_color=green git_changes=''
+    if [[ "Z${vcs_info_msg_0_}" != "Z " ]]; then
+        git_color=yellow
+        git_changes=$vcs_info_msg_0_
+    fi
+    local git_status="$(_git_repo_name) [ $(_git_branch_name)$git_changes ]"
+    if [[ "$TERM_PROGRAM" == WezTerm || -n "$KITTY_WINDOW_ID" ]]; then
+        print -rn -- "$git_status"
     else
-        echo -n "%{$fg_bold[yellow]%}$(_git_repo_name) [ $(_git_branch_name)${vcs_info_msg_0_} ]$FINISH"
+        print -rn -- "%{$fg_bold[$git_color]%}$git_status$FINISH"
     fi
 }
 
@@ -54,14 +60,15 @@ RPROMPT=''
 PROMPT='$MAGENTA%m$FINISH $_CYAN%~ $FINISH
 $NCOLOR%n$FINISH %(?.$GREEN.$RED)% ➜  $FINISH'
 
-# 利用 zsh 内置调用函数异步加载RPROMPT
+# 异步更新 Git 状态：WezTerm/Kitty 标签栏，其他终端右提示符
+ZSH_PROMPT_FILE=''
 ASYNC_PROC=0
 precmd()
 {
     __async()
     {
-        # 保存 RPROMPT 到临时文件
-        printf "%s" "$(prompt_git)" > "${HOME}/.zsh_tmp_prompt"
+        # 保存 Git 状态到临时文件
+        printf "%s" "$(prompt_git)" > "$ZSH_PROMPT_FILE"
         # signal parent
         kill -s USR1 $$
     }
@@ -69,7 +76,10 @@ precmd()
     # 如有必要杀子进程
     if [[ "${ASYNC_PROC}" != 0 ]]; then
         kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+        wait "$ASYNC_PROC" 2>/dev/null
     fi
+    [[ -n "$ZSH_PROMPT_FILE" ]] && rm -f -- "$ZSH_PROMPT_FILE"
+    ZSH_PROMPT_FILE=$(mktemp "/tmp/zsh-prompt.${UID}.$$.XXXXXX") || return
 
     # 后台运行
     __async &!
@@ -78,10 +88,28 @@ precmd()
 
 TRAPUSR1()
 {
-    # 读取 RPROMPT
-    RPROMPT="$(cat ${HOME}/.zsh_tmp_prompt)"
-    # 重置 ASYNC_PROC
+    # 已取消或已处理的任务可能仍有信号待处理
+    [[ -f "$ZSH_PROMPT_FILE" ]] || return 0
+    local prompt_file=$ZSH_PROMPT_FILE
+    ZSH_PROMPT_FILE=''
     ASYNC_PROC=0
-    # 载入 RPROMPT
-    zle && zle reset-prompt
+    if [[ "$TERM_PROGRAM" == WezTerm || -n "$KITTY_WINDOW_ID" ]]; then
+        # 将 Git 状态发送到当前终端窗格
+        printf '\e]1337;SetUserVar=GitStatus=%s\a' "$(base64 < "$prompt_file" | tr -d '\n')"
+    else
+        # 读取右提示符并刷新显示
+        RPROMPT="$(< "$prompt_file")"
+        zle && zle reset-prompt
+    fi
+    rm -f -- "$prompt_file"
+}
+
+# 退出时结束提示符任务并删除临时文件
+TRAPEXIT()
+{
+    if [[ "$ASYNC_PROC" != 0 ]]; then
+        kill -s HUP "$ASYNC_PROC" >/dev/null 2>&1 || :
+        wait "$ASYNC_PROC" 2>/dev/null
+    fi
+    [[ -n "$ZSH_PROMPT_FILE" ]] && rm -f -- "$ZSH_PROMPT_FILE"
 }

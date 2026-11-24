@@ -7,6 +7,10 @@ My zsh config.
 curl -s -k https://cdn.jsdelivr.net/gh/antonchen/zshrc/install.sh | bash
 ```
 
+## 环境变量
+
+环境变量相关内容应该写入 `~/.profile` 目前在 `~/.zshrc` 开头引入。
+
 ## 异常
 
 启动 zsh 时提示：
@@ -21,8 +25,11 @@ Ignore insecure files and continue [y] or abort compinit [n]?
 ### 解决方案
 
 #### 方法 1
+
 1. 运行 `compaudit | xargs chown -R "$(whoami)"`
 2. 运行 `compaudit | xargs chmod go-w`
 3. 如未修复请尝试方法 2
+
 #### 方法 2
+
 1. 修改 [zsh/main.zsh#L18&L20](https://github.com/antonchen/zshrc/blob/master/zsh/main.zsh#L18) `compinit -i` 后添加 `-u` 让 zsh 不检查

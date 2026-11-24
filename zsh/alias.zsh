@@ -1,7 +1,7 @@
 #!/bin/zsh
 # File: alias.zsh
 # Version: 0.1
-# Last Modified: 2023-01-07 23:32:44
+# Last Modified: 2026-10-31 18:30:43
 # Author: Anton Chen
 # Email: contact@antonchen.com
 
@@ -31,8 +31,8 @@ alias -s tgz='tar -xzvf'
 alias -s bz2='tar -xjvf'
 alias -s zip='unzip'
 
-if command -v npm > /dev/null 2>&1; then
-    alias cnpm="npm --registry=https://registry.npm.taobao.org --cache=$HOME/.npm/.cache/cnpm --disturl=https://npm.taobao.org/dist --userconfig=$HOME/.cnpmrc"
+if ! command -v dig > /dev/null 2>&1 && command -v drill > /dev/null 2>&1; then
+    alias dig="drill"
 fi
 
 # 路径别名
