@@ -32,4 +32,4 @@ Ignore insecure files and continue [y] or abort compinit [n]?
 
 #### 方法 2
 
-1. 修改 [zsh/main.zsh#L18&L20](https://github.com/antonchen/zshrc/blob/master/zsh/main.zsh#L18) `compinit -i` 后添加 `-u` 让 zsh 不检查
+1. 修改 [zsh/completions/init.zsh 第 10、12 行](https://github.com/antonchen/zshrc/blob/main/zsh/completions/init.zsh#L10-L12) `compinit -i` 后添加 `-u` 让 zsh 不检查
